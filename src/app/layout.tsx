@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Recursive } from "next/font/google";
 import "./globals.css";
+import Provider from "@/components/Provider";
+import TopNavbar from "@/components/navbar/TopNavbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const recursive = Recursive({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={recursive.className}>
+        <Provider>
+          <TopNavbar />
+          <main className="container mx-auto">{children}</main>
+        </Provider>
+      </body>
     </html>
   );
 }
